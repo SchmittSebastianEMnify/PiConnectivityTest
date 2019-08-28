@@ -1,5 +1,5 @@
 import Cases.dnsLookUp as dns
-import Cases.smallPing as sPing
+import Cases.ping as sPing
 from config import *
 
 result = 'Start:\n\n'
@@ -11,7 +11,11 @@ ips = dns.DnsLookUp(dnsServerIp, domainName)
 for ip in ips:
     result += str(ip) + "\n"
 
-result += sPing.SmallPing(hostsToPing, sizeInByte, numberOfPings)
+result += "\n\nSmall Pings\n"
+result += sPing.Ping(hostsToPing1, sizeInByte1, numberOfPings1)
+
+result += "Large Pings\n"
+result += sPing.Ping(hostsToPing2, sizeInByte2, numberOfPings2)
 
 print(result)
 
