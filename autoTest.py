@@ -15,8 +15,9 @@ for line in lines:
 
 print("-----------")
 
-myResolver = dns.resolver.Resolver()
-myAnswers = myResolver.query("www.reddit.com", "A")
+dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
+dns.resolver.default_resolver.nameservers = ['8.8.8.8']
+myAnswers = dns.resolver.query("www.stackoverflow.com", "A")
 for rdata in myAnswers:
     print(rdata)
 
