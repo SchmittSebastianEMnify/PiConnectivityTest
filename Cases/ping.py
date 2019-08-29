@@ -1,7 +1,7 @@
 import subprocess
 
 def Ping(addresses, size, times):
-    if addresses == "" or size == 0 or times == 0:
+    if addresses is None or size == 0 or times == 0:
         print("host to ping, size of ping or number of pings not configured")
         return ""
     result = ""
