@@ -3,6 +3,7 @@ import dns.resolver
 def DnsLookUp(dnsServerIp, domainName):
     if dnsServerIp == "" or domainName == "":
         print("dns server or domain name not configured")
+        return ""
 
     dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
     dns.resolver.default_resolver.nameservers = [dnsServerIp]

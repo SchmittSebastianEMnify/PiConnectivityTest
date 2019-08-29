@@ -3,6 +3,7 @@ import urllib.request
 def HttpDownload(url, path):
     if url == "" or path == "":
         print("url or path not configured")
+        return ""
     result = ""
     try:
         urllib.request.urlretrieve(url, path)
