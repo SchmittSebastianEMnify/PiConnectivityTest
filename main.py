@@ -27,7 +27,7 @@ result += sPing.Ping(hostsToPing2, sizeInByte2, numberOfPings2)
 result += "\nhttp download:\n"
 print("http download:")
 result += httpDownload.HttpDownload(url, path)
-print("\n")
+result +=("\n")
 
 log = open("log.txt", "w+")
 log.write(result)
