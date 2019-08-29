@@ -6,7 +6,7 @@ def HttpDownload(url, path):
         urllib.request.urlretrieve(url, path)
         result += "download from " + url + " to " + path + " successful"
         print("download from " + url + " to " + path + " successful")
-    except:
+    except Exception:
         result += "http download failed"
         print("http download failed")
 

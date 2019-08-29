@@ -14,4 +14,4 @@ numberOfPings2 = 2
 
 #Case 4: http Dowload
 url = 'https://wiki.ubuntu.com/'
-path = '/home/user/Downloads/ubuntuWiki.html'
+path = '$(PWD)/ubuntuWiki.html'
