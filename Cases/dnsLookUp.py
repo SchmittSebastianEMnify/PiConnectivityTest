@@ -6,8 +6,11 @@ def DnsLookUp(dnsServerIp, domainName):
 
     try:
         myAnswers = dns.resolver.query(domainName, "A")
+        for ip in myAnswers:
+            print(str(ip))
     except:
         return(["Error while dns lookup"])
+        print("Error while dns lookup")
 
 
     return myAnswers
