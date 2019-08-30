@@ -13,7 +13,7 @@ def Ping(address, size, times):
         logging.error("ping to host %s failed", address)
         return 0
 
-    pingOutput = pingOutput[:-1].split("\\n")
+    pingOutput = pingOutput[:-1].split('\\n')
     for line in pingOutput[1:-1]:
         logging.debug(line)
     return 1
