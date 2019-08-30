@@ -1,23 +1,22 @@
 import subprocess
+import logging
 
-def Ping(addresses, size, times):
-    if (not addresses) or size == 0 or times == 0:
-        print("host to ping, size of ping or number of pings not configured")
-        return ""
-    result = ""
-    for address in addresses:
-        try:
-            output = ""
-            pingOutput = str(subprocess.check_output(['ping', '-c', str(times), '-s', str(size), address]))
-            lines = pingOutput.split("\\n")
-            output += lines[0][2:] + "\n"
-            for i in range(-3, -1, 1):
-                output += lines[i] + "\n"
-            output += "\n"
-            print(output)
-            result += output
-        except Exception:
-            result += "\nping to " + address + " failed\n\n"
-            print("\nping to " + address + " failed\n")
+def Ping(address, size, times):
+    if (not address) or size == 0 or times == 0:
+        logging.error("address, size or number of times for ping in config not set")
+        return 0
 
-    return result
+    logging.info("Starting ping to %s with size %s bytes %s times", address, size, times)
+    try:
+        pingOutput = str(subprocess.check_output(['ping', '-c', times, '-s', size, address]))
+    except:
+        logging.error("ping to host %s failed", address)
+        return 0
+
+    pingOutput = pingOutput[:-1].split("\\n")
+    for line in pingOutput[1:-1]:
+        logging.debug(line)
+    return 1
+
+
+

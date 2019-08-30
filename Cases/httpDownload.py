@@ -1,16 +1,15 @@
 import urllib.request
+import logging
 
 def HttpDownload(url, path):
     if url == "" or path == "":
-        print("url or path not configured")
-        return ""
-    result = ""
+        logging.error("url or path in config not set")
+        return 0
+
+    logging.info("start download from %s to %s", url, path)
     try:
         urllib.request.urlretrieve(url, path)
-        result += "download from " + url + " to " + path + " successful"
-        print("download from " + url + " to " + path + " successful")
-    except Exception:
-        result += "http download failed"
-        print("http download failed")
-
-    return result
+        return 1
+    except:
+        logging.error("download from %s to %s failed", url, path)
+        return 0
