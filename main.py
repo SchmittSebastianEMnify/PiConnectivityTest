@@ -5,6 +5,7 @@ import configparser
 import logging
 import sys
 
+
 def GetConfigValue(section, name, config):
     try:
         return config.get(section, name)
@@ -13,12 +14,12 @@ def GetConfigValue(section, name, config):
         exit()
 
 
-logginglevels = {
-    "DEBUG" : 10,
-    "INFO" : 20,
-    "WARNING" : 30,
-    "ERROR" : 40,
-    "CRITICAL" : 50
+loggingLevels = {
+    "DEBUG":    10,
+    "INFO":     20,
+    "WARNING":  30,
+    "ERROR":    40,
+    "CRITICAL": 50
 }
 
 config = configparser.ConfigParser()
@@ -40,20 +41,21 @@ if len(sys.argv) == 2:
 else:
     logLevel = GetConfigValue('logging', 'loglevel', config)
 
-intLogLevel = logginglevels.get(logLevel.upper(), 20)
+intLogLevel = loggingLevels.get(logLevel.upper(), 20)
 
 logFile = GetConfigValue("logging", "logFile", config)
 
 logging.basicConfig(level=intLogLevel, format='%(asctime)s: %(message)s', filename=logFile)
 
-if logginglevels.get(logLevel.upper(), None) == None:
+if loggingLevels.get(logLevel.upper(), None) == None:
     logging.warning("log level %s doesnt exist. Using log level INFO as default", logLevel.upper())
 
-logging.info("------starting tests--------")
+logging.info("starting test")
 
 dnsServerIp = GetConfigValue("dnsLookUp", "dnsServerIp", config)
 domainName = GetConfigValue("dnsLookUp", "domainName", config)
 
+# use the dnsLookUp module to test if a dns look up works
 if dns.DnsLookUp(dnsServerIp, domainName):
     logging.info("dns look up successful")
 else:

@@ -15,7 +15,8 @@ def Ping(address, size, times):
 
     pingOutput = pingOutput[:-1].split('\\n')
     for line in pingOutput[1:-1]:
-        logging.debug(line)
+        if line != "":
+            logging.debug(line)
     return 1
 
 
